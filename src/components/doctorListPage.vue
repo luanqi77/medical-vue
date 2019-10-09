@@ -30,40 +30,40 @@
       <el-table-column
         prop="age"
         label="年龄"
-        width="100">
+        width="60">
       </el-table-column>
 
       <el-table-column
         prop="createTime"
         label="创建时间"
-        width="120">
+        width="150">
       </el-table-column>
 
       <el-table-column
         prop="workyears"
         label="工作年限"
-        width="150">
+        width="100">
       </el-table-column>
 
       <el-table-column
         prop="email"
         label="邮箱"
-        width="150">
+        width="100">
       </el-table-column>
 
       <el-table-column
         prop="work_time"
         label="工作时间"
-        width="150">
+        width="100">
       </el-table-column>
 
       <el-table-column
         prop="pic"
         label="头像"
-        width="200">
+        width="150">
       </el-table-column>
 
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="180">
 
         <template slot-scope="users">
           <el-button type="primary" icon="el-icon-edit" circle @click="updateDoctor(users.row.did)"></el-button>
@@ -148,4 +148,7 @@
     }
   }
 </script>
+<style>
+
+</style>
 

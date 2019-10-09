@@ -11,10 +11,8 @@
       <el-table-column
         prop="uid"
         label="uid"
-        width="100">
+        width="60">
       </el-table-column>
-
-
       <el-table-column
         prop="username"
         label="姓名"
@@ -33,7 +31,7 @@
       <el-table-column
         prop="sex"
         label="性别"
-        width="100">
+        width="60">
       </el-table-column>
       <el-table-column
         prop="age"
@@ -43,22 +41,22 @@
       <el-table-column
         prop="createTime"
         label="创建时间"
-        width="120">
+        width="100">
       </el-table-column>
       <el-table-column
         prop="address"
         label="地址"
-        width="150">
+        width="130">
       </el-table-column>
       <el-table-column
         prop="email"
         label="邮箱"
-        width="150">
+        width="120">
       </el-table-column>
       <el-table-column
         prop="pic"
         label="头像"
-        width="200">
+        width="150">
       </el-table-column>
 
       <el-table-column label="操作" width="200">
