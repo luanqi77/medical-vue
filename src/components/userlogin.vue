@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div >
     <!--<el-button plain @click="dialogFormVisible = true">登录</el-button>-->
-    <el-link @click="dialogFormVisible = true" style="margin-left: 1250px;height: 30px ;font-size: 16px">登陆</el-link>
+    <el-link @click="dialogFormVisible = true" style="margin-left: 1250px;height: 30px ;font-size: 16px">登录</el-link>
     <el-divider direction="vertical"></el-divider>
-    <el-dialog title="登录" :visible.sync="dialogFormVisible" center>
+    <el-dialog title="欢迎您，病友！请登录" :visible.sync="dialogFormVisible" center >
 
       <!-- 插入测试 -->
-      <el-form :model="user" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+      <el-form :model="user" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm"
+     >
 
         <el-form-item label="账号" prop="username">
           <el-input v-model="user.username"></el-input>
@@ -20,6 +21,7 @@
           <el-switch v-model="user.delivery"></el-switch>
         </el-form-item>
       </el-form>
+
       <!-- 插入测试 -->
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false; resetForm('ruleForm2')">取 消</el-button>
@@ -30,8 +32,10 @@
 </template>
 <script>
   import axios from 'axios'
+  import ElTabs from "../../node_modules/element-ui/packages/tabs/src/tabs";
   export default{
-      name:'userlogin',
+    components: {ElTabs},
+    name:'userlogin',
     /*在script里面*/
     data() {
       /*插入form方法*/
@@ -89,6 +93,7 @@
           if (res.data=="main"){
             alert("登录成功")
             this.$router.push({path:"/userMain/"+username})
+
           }else {
             alert("密码错误或用户不存在")
           }

@@ -143,7 +143,9 @@
          var url='api/regist'
           axios.post(url,this.user).then(res=>{
               if (res.data=="success"){
-                  this.$router.push('/index')
+                var username=this.$route.params.username;
+                  this.$router.push({path:"/index/"+username})
+//                this.$router.push("/index")
               }else {
                   alert("注册失败")
               }

@@ -2,7 +2,7 @@
   <div>
     <el-container>
       <el-header style="margin-top: -70px">
-        <el-link @click="userMessage()" style="margin-left: 1350px;height: 30px;font-size: 16px">个人中心</el-link>
+        <el-link @click="userMain()" style="margin-left: 1350px;height: 30px;font-size: 16px">个人中心</el-link>
         <el-divider direction="vertical"></el-divider>
         <el-link @click="loginout()" style="margin-left: 1500px;height: 30px;font-size: 16px;margin-top: -117px;">注销</el-link>
       </el-header>
@@ -57,10 +57,12 @@
         this.$router.push({name:'index'})
       },
       ask(){
-        this.$router.push("/userAsk")
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userAsk/"+username})
       },
-      userMessage(){
-        this.$router.push("/userMessage")
+      userMain(){
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userMain/"+username})
       }
     }
   }

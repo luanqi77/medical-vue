@@ -48,17 +48,17 @@ export default new Router({
       component: userMain
     },
     {
-      path: '/userMessage',
+      path: '/userMessage/:username',
       name: 'userMessage',
       component: userMessage
     },
     {
-      path: '/userAppoint',
+      path: '/userAppoint/:username',
       name: 'userAppoint',
       component: userAppoint
     },
     {
-      path: '/userAsk',
+      path: '/userAsk/:username',
       name: 'userAsk',
       component: userAsk
     },
@@ -73,17 +73,17 @@ export default new Router({
       component: okuserheader
     },
     {
-      path: '/index',
+      path: '/index/:username',
       name: 'index',
       component: index
     },
     {
-      path: '/userAnswer',
+      path: '/userAnswer/:description/:username',
       name: 'userAnswer',
       component: userAnswer
     },
     {
-      path: '/appointSelect',
+      path: '/appointSelect/:username',
       name: 'appointSelect',
       component: appointSelect
     },

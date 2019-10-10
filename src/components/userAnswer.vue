@@ -9,14 +9,29 @@
         </div>
       </div>
           <div style="margin: auto;width: 75%">
+
               <img src="../assets/images/guanggao.png" style="margin: auto;width: 100%">
 
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:75%;
             height: 150px;margin-top: 10px;float: left;margin: auto" >
-                <!--<span style="font-size: 18px;line-height: 80px;margin-left: -700px">真的是什么问题</span>-->
+
+
                 <form model="questions">
-                <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin-left: -250px;" ><i class="el-icon-question"></i>
-                  <input v-model="questions.description" style="width: 500px;color:darkturquoise;font-size: 16px ;"/></div>
+                <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin-left: -55px;width: 500px" >
+                  <i class="el-icon-s-custom"></i>{{questions.description}}
+                  </div>
+                  <el-button plain @click="toAsk()" style="background-color: darkturquoise;color: white;
+                  margin-right: -700px ;margin-top: -10px" >向医生提问</el-button>
+                  <div style="color: darkturquoise;margin-top: 10px;margin-left: 600px; font-size: 16px;width: 350px" >
+                     {{questions.createTime}}
+                  </div>
+                  <div style="color: darkturquoise;margin-top: -45px;margin-left: 120px;font-size: 16px;width: 40px" >
+                   {{questions.age}}岁
+                  </div>
+                  <div style="color: darkturquoise;margin-top: -22px;margin-left: 90px;width: 20px" >
+                     {{questions.sex==1?'男':'女'}}
+                  </div>
+
                 </form>
               </div>
 
@@ -24,10 +39,14 @@
             height: 150px;margin-top: 2px;margin-left: 945px" >
                   <span style="text-align: center;font-size: 18px;line-height: 40px">当前在线<i style="color: darkturquoise">1888</i>名医生</span><br>
                   <span style="text-align: center;font-size: 25px;line-height: 50px">免费向医生咨询</span><br>
-                  <el-button plain >立即咨询</el-button>
+                  <el-button plain @click="toAsk()" >立即咨询</el-button>
               </div>
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:75%;height: 300px;margin-top: 2px;
               margin: auto;float: left" >
+                <div style="font-size: 18px;margin-left: -630px;margin-top: 30px">医生回答<i class="el-icon-star-off"></i>
+                  <i class="el-icon-star-off"></i></div>
+                <div style="margin-left: -580px;margin-top: 20px">李医生:你的脑子不正常</div>
+
               </div>
               <img src="../assets/images/gg.png" style="margin: auto;width: 24%">
           </div>
@@ -66,23 +85,30 @@
           return{
               questions:{
                 description:'',
-               createTime: '',
+                createTime: '',
+                age:'',
+                sex:''
 
               },
               users:[]
           }
       },
       mounted(){
-//        this.questions=[{description:"头大头大"}]
+        var description=this.$route.params.description;
         var url="api/selectUserQuestion"
-        axios.post(url).then(res=>{
+        axios.post(url,{description:description}).then(res=>{
           this.questions=res.data;
         })
       },
     methods: {
       index(){
-        this.$router.push("/index")
+        var username=this.$route.params.username;
+        this.$router.push({path:"/index/"+username})
       },
+      toAsk(){
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userAsk/"+username})
+      }
 //      submitForm(){
 //        var url="api/insertQuestion"
 //        axios.post(url,this.question).then(res=>{

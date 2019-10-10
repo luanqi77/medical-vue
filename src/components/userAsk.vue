@@ -7,17 +7,23 @@
           <el-link :underline="false" @click="index()" style="font-size: 15px;line-height: 42px;color: white ;">华佗医疗 ></el-link>
           <span>普通咨询</span>
         </div>
-        <div style="float: left;width:715px;margin-left: 450px;">
+        <div style="float: left;width:715px;margin-left: 332px;">
           <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;
         height: 50px;margin-top: 10px" >
             <div style="float: left; margin-left: 35px">
-              <span style="line-height: 50px;margin-left: 10px;font-size: 18px;color: darkturquoise">病情描述(至少10个字)</span>
+              <span style="line-height: 50px;margin-left: 0px;font-size: 18px;color: darkturquoise">病情描述(至少10个字)</span>
             </div>
           </div>
         </div>
       </div>
-    <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;height: 500px;margin-top: 2px;
-    float: left;margin-left: 450px" >
+    <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:24%;
+            height: 150px;margin-top: -51px;margin-left: 1050px;float: left" >
+      <span style="text-align: center;font-size: 18px;line-height: 40px">当前在线<i style="color: darkturquoise">1888</i>名医生</span><br>
+      <span style="text-align: center;font-size: 25px;line-height: 50px">免费向医生咨询</span><br>
+      <el-button plain @click="toAsk()">立即咨询</el-button>
+    </div>
+    <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;height: 500px;margin-top: -96px;
+    float: left;margin-left: 332px" >
         <el-form :inline="true" :model="question" status-icon :rules="rules" class="demo-ruleForm">
           <el-form-item  prop="description" label=" ">
             <el-input
@@ -43,8 +49,8 @@
             <el-button type="primary" @click="submitForm()" style="margin-top: 10px">提交</el-button>
           </el-form-item>
         </el-form>
-
     </div>
+    <img src="../assets/images/gg.png" style="margin-right: 212px;width: 24%">
     <div style="float: left">
       <foot></foot>
     </div>
@@ -81,7 +87,8 @@
               question:{
                 description:'',
                 age:'',
-                sex:''
+                sex:'',
+                uid:''
               },
               rules:{
                 description: [
@@ -97,17 +104,29 @@
           }
       },
       mounted(){
-
+        var username=this.$route.params.username;
+        var urls="api/selectUid"
+        axios.post(urls,{username:username}).then(res=>{
+          this.question.uid=res.data
+        })
       },
     methods: {
       index(){
-        this.$router.push("/index")
+        var username=this.$route.params.username;
+        this.$router.push({path:"/index/"+username})
+      },
+      toAsk(){
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userAsk/"+username})
       },
       submitForm(){
         var url="api/insertQuestion"
         axios.post(url,this.question).then(res=>{
             if(res.data=="ok"){
-                this.$router.push("/userMessage")
+              var username=this.$route.params.username;
+              this.$router.push({path:"/userMain/"+username})
+            }else {
+                alert("请填写信息")
             }
         })
       }

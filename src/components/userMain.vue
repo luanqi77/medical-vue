@@ -20,35 +20,38 @@
             </div>
             <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;height: 525px;margin-top: 2px" >
               <el-table
-                :data="question"
-                style="width: 100% ;font-size: 16px;border-right:solid rgba(0, 0, 0, .12)"
+                :data="userQuestions"
+                style="width: 94% ;font-size: 16px;border-right:solid rgba(0, 0, 0, .12);margin-left: 44px"
                 :row-class-name="tableRowClassName">
-
 
                 <el-table-column
                   prop="description"
                   label="问题描述"
-                  width="500"
+                  width="300"
                   >
                 </el-table-column>
                 <el-table-column
                   prop="createTime"
                   label="日期"
-                  width="180"
+                  width="210"
                 >
                 </el-table-column>
                 <el-table-column
-                  fixed="right"
                   label="操作"
-                  width="100">
+                  width="160"
+                >
+                  <template slot-scope="userQuestions">
+                    <el-button type="primary" plain @click="toUserAnswer(userQuestions.row.description)">查看回复</el-button>
+                  </template>
                 </el-table-column>
+
               </el-table>
             </div>
           </div>
 
           <div style="float: left;width: 200px;height: 576px;box-shadow: 0 2px 4px rgba(0, 0, 0, .12);margin-top: 10px">
             <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;
-          height: 50px; font-size: 18px;color: darkturquoise;line-height: 50px" >上传头像</div>
+          height: 50px; font-size: 18px;color: darkturquoise;line-height: 50px" >修改头像</div>
 
             <div style="width: 200px;height: 190px">
               <el-upload
@@ -65,8 +68,7 @@
           height: 335px; font-size: 16px;color: darkturquoise;line-height: 40px" >个人资料
                 <form model="user">
                   <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >用户名:
-                    <el-divider direction="vertical"></el-divider><input v-model="user.username" :disabled="true"
-                     style="border: hidden;width: 80px;color:darkturquoise;font-size: 16px ;"/></div>
+                    <el-divider direction="vertical"></el-divider>{{user.username}}</div>
                   <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >真实姓名:
                     <el-divider direction="vertical"></el-divider><input v-model="user.name"
                     style="border: hidden;width: 50px;color:darkturquoise;font-size: 16px "/></div>
@@ -81,7 +83,7 @@
                   <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >地址:
                     <el-divider direction="vertical"></el-divider><input v-model="user.address"
                     style="border: hidden;width: 50px;color:darkturquoise;font-size: 16px "/></div>
-                  修改:<el-divider direction="vertical"></el-divider><el-button
+                  点击修改:<el-divider direction="vertical"></el-divider><el-button
                   size="mini" @click="updateUser(user.uid)" icon="el-icon-edit"></el-button>
               </form>
             </div>
@@ -141,12 +143,19 @@
       ElLink},
     data(){
           return {
-            question: {
-              createTime: '',
-              description:''
+            userQuestions:[],
+            userQuestion:
+              {
+                  uid:1,
+//                  description:'',
+//                  createTime: '',
+//                  age:'',
+//                  sex:''
               },
+
               imageUrl: '',
               user:{
+                uid:'',
                 username:'',
                 name:'',
                 sex:'',
@@ -164,8 +173,8 @@
         });
 
         var urls="api/selectQuestion"
-        axios.post(urls).then(res=>{
-            this.question=res.data;
+        axios.post(urls,{username:username}).then(res=>{
+                this.userQuestions=res.data
         })
 
       },
@@ -194,17 +203,20 @@
         return '';
       },
       userMessage(){
-          this.$router.push("/userMessage")
+        var username=this.$route.params.username;
+          this.$router.push({path:"/userMessage/"+username})
       },
       userMain(){
         var username=this.$route.params.username;
         this.$router.push({path:"/userMain/"+username})
       },
       userAppoint(){
-        this.$router.push("/userAppoint")
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userAppoint/"+username})
       },
       index(){
-        this.$router.push("/index")
+        var username=this.$route.params.username;
+        this.$router.push({path:"/index/"+username})
       },
       updateUser(){
           var url="api/updateUsers"
@@ -215,6 +227,10 @@
                 this.$router.push({path:"/userMain/"+username})
               }
           })
+      },
+      toUserAnswer(description){
+        var username=this.$route.params.username;
+          this.$router.push({path:"/userAnswer/"+description+"/"+username})
       }
     }
   }

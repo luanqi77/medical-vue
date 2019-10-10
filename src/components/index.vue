@@ -5,7 +5,7 @@
         <userlogin></userlogin>
         <el-link @click="userRegist()" style="margin-left: 1350px;height: 30px;margin-top: -117px;font-size: 16px">注册</el-link>
 
-        <el-link @click="userMessage()" style="margin-left: 1500px;height: 30px;margin-top: -234px;font-size: 16px">个人中心</el-link>
+        <el-link @click="userMain()" style="margin-left: 1500px;height: 30px;margin-top: -234px;font-size: 16px">个人中心</el-link>
       </el-header>
     </el-container>
     <el-header style="margin-top: -20px">
@@ -227,10 +227,12 @@
         this.$router.push("/userRegist")
       },
       ask(){
-        this.$router.push("/userAsk")
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userAsk/"+username})
       },
-      userMessage(){
-        this.$router.push("/userMessage")
+      userMain(){
+        var username=this.$route.params.username;
+        this.$router.push({path:"/userMain/"+username})
       },
       handleClick(tab, event) {
         console.log(tab, event);

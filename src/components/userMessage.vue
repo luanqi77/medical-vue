@@ -43,24 +43,28 @@
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </div>
-          <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;
-        height: 335px; font-size: 16px;color: darkturquoise;line-height: 40px" >个人资料
-            <div v-for="(user,index) in users" >
-                <div style="font-size: 16px;color: darkturquoise;line-height: 40px">用户名:
+            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;
+            height: 335px; font-size: 16px;color: darkturquoise;line-height: 40px" >个人资料
+              <form model="user">
+                <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >用户名:
                   <el-divider direction="vertical"></el-divider>{{user.username}}</div>
+                <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >真实姓名:
+                  <el-divider direction="vertical"></el-divider><input v-model="user.name"
+                                                                       style="border: hidden;width: 50px;color:darkturquoise;font-size: 16px "/></div>
+                <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >性别:
+                  <el-divider direction="vertical"></el-divider><input v-model="user.sex"
+                                                                       style="border: hidden;width: 50px;color:darkturquoise;font-size: 16px "/></div>
 
-                <div style="font-size: 16px;color: darkturquoise;line-height: 40px">真实姓名:
-                  <el-divider direction="vertical"></el-divider>{{user.name}}</div>
-                <div style="font-size: 16px;color: darkturquoise;line-height: 40px">性别:
-                  <el-divider direction="vertical"></el-divider>{{user.sex}}</div>
-                <div style="font-size: 16px;color: darkturquoise;line-height: 40px">年龄:
-                  <el-divider direction="vertical"></el-divider>{{user.age}}岁</div>
-                <div style="font-size: 16px;color: darkturquoise;line-height: 40px;word-wrap: break-word">地址:
-                  <el-divider direction="vertical"></el-divider>{{user.address}}</div>
-                修改:<el-divider direction="vertical"></el-divider><el-button
-                size="mini" @click="toUpdate(user.uid)" icon="el-icon-edit"></el-button>
-            </div>
+                <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >年龄:
+                  <el-divider direction="vertical"></el-divider><input v-model="user.age"
+                                                                       style="border: hidden;width: 50px;color:darkturquoise;font-size: 16px "/></div>
 
+                <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >地址:
+                  <el-divider direction="vertical"></el-divider><input v-model="user.address"
+                                                                       style="border: hidden;width: 50px;color:darkturquoise;font-size: 16px "/></div>
+                点击修改:<el-divider direction="vertical"></el-divider><el-button
+                size="mini" @click="updateUser(user.uid)" icon="el-icon-edit"></el-button>
+              </form>
             </div>
           </div>
         </div>
@@ -113,15 +117,22 @@
           return{
               questions:[],
               imageUrl: '',
-              users:[]
+            user:{
+              username:'',
+              name:'',
+              sex:'',
+              age:'',
+              email:'',
+              address:''
+            }
           }
       },
       mounted(){
-
-        this.questions=[{description:"感冒发作",createTime:"2018-10-02"},{description:"精神病",createTime:"2018-10-02"}]
-        this.users=[{username:"zhangsan",name:"张三",sex:"男",age:18,email:"623233604@qq.com",address:"桃花岛"}]
-
-
+        var username=this.$route.params.username;
+        var url="api/selectOne"
+        axios.post(url,{username:username}).then(res=>{
+          this.user=res.data;
+        });
       },
     methods: {
       handleAvatarSuccess(res, file) {
@@ -140,18 +151,31 @@
         return isJPG && isLt2M;
       },
         userMessage(){
-          this.$router.push("/userMessage")
+          var username=this.$route.params.username;
+          this.$router.push({path:"/userMessage/"+username})
         },
         userMain(){
-            var username="zhangsan"
+          var username=this.$route.params.username;
           this.$router.push({path:"/userMain/"+username})
         },
         userAppoint(){
-          this.$router.push("/userAppoint")
+          var username=this.$route.params.username;
+          this.$router.push({path:"/userAppoint/"+username})
         },
-      index(){
-        this.$router.push("/index")
-      }
+        index(){
+          var username=this.$route.params.username;
+          this.$router.push({path:"/index/"+username})
+        },
+        updateUser(){
+          var url="api/updateUsers"
+          axios.post(url,this.user).then(res=>{
+            if (res.data=="ok"){
+              alert("修改成功")
+              var username=this.$route.params.username;
+              this.$router.push({path:"/userMain/"+username})
+            }
+          })
+        },
     }
   }
 
