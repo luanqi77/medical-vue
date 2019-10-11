@@ -3,37 +3,37 @@
       <okuserheader></okuserheader>
       <div  style=" margin: auto;margin-top: 10px;width: 100%;height: 42px;
       border-radius:4px;background-color: darkturquoise;" >
-        <div style="margin-right: 800px;font-size: 14px;line-height: 42px;color: white ;">
+        <div style="margin-right: 860px;font-size: 14px;line-height: 42px;color: white ;">
           <el-link :underline="false" @click="index()" style="font-size: 15px;line-height: 42px;color: white ;">华佗医疗 ></el-link>
           <span >个人中心</span>
         </div>
         <div style="margin: auto;width: 80%">
-          <div style="float: left;width:715px;margin-left: 165px;">
-            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;
+          <div style="float: left;width:800px;margin-left: 158px;">
+            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:800px;
           height: 50px;margin-top: 10px" >
 
-                <div style="float: left; margin-left: 35px">
+                <div style="float: left; ">
                  <el-link  @click="userMain()" style="line-height: 50px;margin-left: 20px;font-size: 18px;color: darkturquoise">我的提问</el-link>
                  <el-link  @click="userMessage()" style="line-height: 50px;margin-left: 40px;font-size: 18px;color: darkturquoise">我的消息</el-link>
                  <el-link  @click="userAppoint()" style="line-height: 50px;margin-left: 40px;font-size: 18px;color: darkturquoise">挂号预约</el-link>
                 </div>
             </div>
-            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;height: 525px;margin-top: 2px" >
+            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:800px;height: 525px;margin-top: 2px" >
               <el-table
                 :data="userQuestions"
-                style="width: 94% ;font-size: 16px;border-right:solid rgba(0, 0, 0, .12);margin-left: 44px"
+                style="width: 100% ;font-size: 16px;border-right:solid rgba(0, 0, 0, .12);"
                 :row-class-name="tableRowClassName">
 
                 <el-table-column
                   prop="description"
                   label="问题描述"
-                  width="300"
+                  width="400"
                   >
                 </el-table-column>
                 <el-table-column
                   prop="createTime"
                   label="日期"
-                  width="210"
+                  width="237"
                 >
                 </el-table-column>
                 <el-table-column

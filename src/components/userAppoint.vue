@@ -9,28 +9,58 @@
           <span>挂号预约</span>
         </div>
         <div style="margin: auto;width: 80%">
-          <div style="float: left;width:715px;margin-left: 165px;">
-            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;
+          <div style="float: left;width:800px;margin-left: 158px;">
+            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:800px;
           height: 50px;margin-top: 10px" >
 
-                <div style="float: left; margin-left: 35px">
+                <div style="float: left;">
                  <el-link  @click="userMain()" style="line-height: 50px;margin-left: 20px;font-size: 18px;color: darkturquoise">我的提问</el-link>
                  <el-link  @click="userMessage()" style="line-height: 50px;margin-left: 40px;font-size: 18px;color: darkturquoise">我的消息</el-link>
                  <el-link  @click="userAppoint()" style="line-height: 50px;margin-left: 40px;font-size: 18px;color: darkturquoise">挂号预约</el-link>
                 </div>
             </div>
-            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;height: 525px;margin-top: 2px" >
-                <div v-for="(hospital,index) in hospitals" style="width: 715px;height: 170px; border-bottom: dotted rgba(0, 0, 0, .12)">
-                    <div style="width: 150px;height: 100px;float: left;margin-top: 25px"><img src="../assets/images/xibei.jpg" width="140px" height="110px" /></div>
-                    <div style="width: 550px;height: 170px;float: left ">
-                      <div style="font-size: 16px;line-height: 70px;width: 200px">{{hospital.hname}}</div>
-                      <div style="font-size: 14px;width: 200px;line-height: 45px;">{{hospital.level}}</div>
-                      <div style="font-size: 14px;line-height: 45px;width: 300px"><i class="el-icon-map-location"></i> {{hospital.address}}</div>
-                      <el-link @click="appoint(hospital.hname)" type="primary" style="margin-left: 270px ;margin-top: -215px;font-size: 18px"  >预约挂号</el-link>
-                      <el-link @click="tui()" type="warning" style="margin-left: 270px ;margin-top: -150px;font-size: 18px"  >推荐专家</el-link>
-                    </div>
+            <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:800px;height: 525px;margin-top: 2px" >
 
-                </div>
+              <el-table
+                :data="hospitals"
+                style="width: 100% ;font-size: 16px;border-right:solid rgba(0, 0, 0, .12);"
+                :row-class-name="tableRowClassName">
+
+                <el-table-column
+                  prop="h_name"
+                  label="医院名称"
+                  width="250"
+                >
+                </el-table-column>
+                <el-table-column
+                  prop="level"
+                  label="医院等级"
+                  width="150"
+                >
+                </el-table-column>
+                <el-table-column
+                  prop="h_address"
+                  label="地址"
+                  width="237"
+                >
+                </el-table-column>
+                <el-table-column
+                  label="操作"
+                  width="160"
+                >
+                <template slot-scope="hospitals">
+                  <el-button type="primary" plain @click="appoint(hospitals.row.h_name)">预约挂号</el-button>
+                </template>
+                </el-table-column>
+              </el-table>
+              <el-pagination
+                background
+                layout="prev, pager, next"
+                :page-size="this.params.size"
+                v-on:current-change="changePage"
+                :total="total"
+                :current-page="this.params.page">
+              </el-pagination>
             </div>
           </div>
 
@@ -130,21 +160,51 @@
               age:'',
               email:'',
               address:''
-            }
+            },
+            total: '0',
+            params: {
+              page: '1',
+              size: '3',
+            },
           }
       },
       mounted(){
-        this.hospitals=[{hname:"西北妇女儿童医院",address:"陕西省西安市新城区北大街后宰门73号",level:"三级甲等",pic:'../assets/images/xibei.jpg'},
-          {hname:"西安市红会医院",address:"陕西省西安市南稍门友谊东路555号",level:"三级甲等",pic:'../assets/images/xibei.jpg'}]
-        this.questions=[{description:"感冒发作",createTime:"2018-10-02"},{description:"精神病",createTime:"2018-10-02"}]
+//        this.hospitals=[{hname:"西北妇女儿童医院",address:"陕西省西安市新城区北大街后宰门73号",level:"三级甲等",pic:'../assets/images/xibei.jpg'},
+//          {hname:"西安市红会医院",address:"陕西省西安市南稍门友谊东路555号",level:"三级甲等",pic:'../assets/images/xibei.jpg'}]
         var username=this.$route.params.username;
         var url="api/selectOne"
         axios.post(url,{username:username}).then(res=>{
           this.user=res.data;
         });
-
+        this.query();
       },
     methods: {
+      tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 1) {
+          return 'warning-row';
+        } else if (rowIndex === 3) {
+          return 'success-row';
+        }
+        return '';
+      },
+      changePage: function (page) {
+        this.params.page = page
+        this.query();
+
+      },
+      query: function () {
+        var url = '/api/selectHospital/' + this.params.page + "/" + this.params.size
+        axios.get(url).then(res => {
+          if (res.data != null) {
+            this.hospitals = res.data.list;
+            this.total = res.data.total;
+
+          }
+        })
+      },
+
+
+
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
       },
@@ -180,9 +240,9 @@
         var username=this.$route.params.username;
           this.$router.push({path:"/appointSelect/"+username+"/"+hname})
       },
-      tui(){
+      tui(hname){
         var username=this.$route.params.username;
-        this.$router.push({path:"/appointSelect/"+username})
+        this.$router.push({path:"/appointSelect/"+username+"/"+hname})
       },
       updateUser(){
         var url="api/updateUsers"

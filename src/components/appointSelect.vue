@@ -13,21 +13,24 @@
 
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:76%;
             height: 150px;margin-top: 10px;float: left;margin: auto" >
-                <form model="questions">
-                <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin-left: -100px;" >
-                  <span>科室 :</span>
-                  <el-tag style="font-size: 16px">内科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">外科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">神经科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">妇产科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">儿科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">皮肤科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">男科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">整形外科</el-tag><el-divider direction="vertical"></el-divider>
-                  <el-tag style="font-size: 16px">肿瘤科</el-tag>
+                <form model="guahao">
+                <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin:auto;" >
+                  <span>选择科室 :</span>
+                  <el-radio-group v-model="guahao.syn" >
+                    <el-radio :label="1"><el-tag style="font-size: 16px">内科</el-tag></el-radio>
+                    <el-radio :label="2"><el-tag style="font-size: 16px">外科</el-tag></el-radio>
+                    <el-radio :label="3"><el-tag style="font-size: 16px">神经科</el-tag></el-radio>
+                    <el-radio :label="4"><el-tag style="font-size: 16px">儿科</el-tag></el-radio>
+                    <el-radio :label="5"><el-tag style="font-size: 16px">男科</el-tag></el-radio>
+                    <el-radio :label="6"><el-tag style="font-size: 16px">皮肤科</el-tag></el-radio>
+                    <el-radio :label="7"><el-tag style="font-size: 16px">妇产科</el-tag></el-radio>
+                  </el-radio-group>
                   <br>
-                  <div style="margin-top: -15px;margin-left: 67px;width: 400px">就诊日期 :<input type="date"  style="width: 200px;
-                  margin-left: 10px;margin-top: 20px;height: 20px;color: darkturquoise" ></input></div>
+                  <div style="margin-top: -15px;margin-left:-10px;width: 100%">就诊日期 :<input type="date" v-model="guahao.g_time" style="width: 200px;
+                  margin-left: 10px;margin-top: 20px;height: 20px;color: darkturquoise" ></input>
+                    <el-button type="primary" @click="submitForm()" style="margin-left: 450px;font-size: 18px">提交预约</el-button>
+                  </div>
+
                 </div>
                 </form>
               </div>
@@ -38,36 +41,52 @@
                   <span style="text-align: center;font-size: 25px;line-height: 50px">免费向医生咨询</span><br>
                   <el-button plain @click="toAsk()">立即咨询</el-button>
               </div>
-              <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:76%;height: 300px;margin-top: 2px;
+              <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:76%;height: 400px;margin-top: 2px;
               margin: auto;float: left" >
-                <span style="color: darkturquoise;font-size: 20px;line-height: 50px;margin-left: -850px">推荐医生</span>
-                <div style="float: left;width: 100px;height: 100px;
-                margin-left: 100px;margin-top: 70px; ">
-                  <img src="../assets/images/huatuo.jpg" style="width: 100px;height: 100px">
-                </div>
+                <span style="font-size: 20px;line-height: 50px;margin:auto">推荐医生</span>
+                <div style="width:100%;height: 300px;margin-top: 2px" >
+                  <el-table
+                    :data="docter"
+                    style="width: 100% ;font-size: 16px;border-right:solid rgba(0, 0, 0, .12);"
+                    :row-class-name="tableRowClassName">
 
-                <div style="float: left;width: 100px;height: 100px;
-                margin-left: 50px;margin-top: 70px;">
-                  <span style="font-size: 20px">华佗</span><br>
-                  <span>主治医师</span><br>
-                  <span>中华医院</span><br>
-                  <span>全能</span>
-                </div>
-                <div style="float: left;width: 100px;height: 100px;
-                margin-left: 50px;margin-top: 70px; ">
-                  <span>擅长疾病:全身上下无所不能</span><br>
-                </div>
-                <div style="float: left;width: 100px;height: 100px;
-                margin-left: 50px;margin-top: 70px;">
-                  <span>9999次被赞</span><br>
-                  <span>9999次预约</span>
-                </div>
-                <div style="float: left;width: 100px;height: 100px;
-                margin-left: 50px;margin-top: 70px; ">
-                  <span>暂不接受预约</span><br>
+                    <el-table-column
+                      prop=""
+                      label="头像"
+                      width="250"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                      prop="dname"
+                      label="姓名"
+                      width="210"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                      prop="workyears"
+                      label="从业时间"
+                      width="210"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                    prop="experience"
+                    label="主治"
+                    width="275"
+                  >
+                  </el-table-column>
+
+                  </el-table>
+                  <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    :page-size="this.params.size"
+                    v-on:current-change="changePage"
+                    :total="total"
+                    :current-page="this.params.page">
+                  </el-pagination>
                 </div>
               </div>
-              <img src="../assets/images/gg.png" style="margin: auto;width: 24%">
+              <img src="../assets/images/gg.png" style="margin: auto;width: 24%;height: 400px">
           </div>
     <div style="float: left">
       <foot></foot>
@@ -77,6 +96,15 @@
 
 </template>
 <style>
+
+  .el-table .warning-row {
+    background: oldlace;
+  }
+
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
+
 </style>
 <script>
   import axios from 'axios'
@@ -109,17 +137,56 @@
                createTime: '',
 
               },
+              total: '0',
+              docter:[],
+              params: {
+                page: '1',
+                size: '4',
+              },
+              guahao:{
+                  gname:'',
+                  g_time:'',
+                  syn:'',
+                  gdocter:'',
+                  uid:''
+              },
               users:[]
           }
       },
       mounted(){
-////        this.questions=[{description:"头大头大"}]
-//        var url="api/selectUserQuestion"
-//        axios.post(url).then(res=>{
-//          this.questions=res.data;
-//        })
+        this.query();
+        var gname=this.$route.params.hname;
+        this.guahao.gname=gname;
+
+        var urls="api/selectUid"
+        var username=this.$route.params.username;
+        axios.post(urls,{username:username}).then(res=>{
+          this.guahao.uid=res.data
+        })
       },
     methods: {
+      changePage: function (page) {
+        this.params.page = page
+        this.query();
+
+      },
+      query: function () {
+        var url = '/api/DocterFindAll/' + this.params.page + "/" + this.params.size
+        axios.get(url).then(res => {
+          if (res.data != null) {
+            this.docter = res.data.list;
+            this.total = res.data.total;
+          }
+        })
+      },
+      tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 1) {
+          return 'warning-row';
+        } else if (rowIndex === 3) {
+          return 'success-row';
+        }
+        return '';
+      },
       index(){
         var username=this.$route.params.username;
         this.$router.push({path:"/index/"+username})
@@ -127,15 +194,22 @@
       toAsk(){
         var username=this.$route.params.username;
         this.$router.push({path:"/userAsk/"+username})
+      },
+      submitForm(){
+        var url="api/insertOneGuahao"
+        axios.post(url,this.guahao).then(res=>{
+            if(res.data=="ok"){
+              this.$message({
+                message: '预约成功',
+                type: 'success'
+              });
+              var username=this.$route.params.username;
+                this.$router.push({path:"/userMain/"+username})
+            }else {
+              this.$message.error('预约失败');
+            }
+        })
       }
-//      submitForm(){
-//        var url="api/insertQuestion"
-//        axios.post(url,this.question).then(res=>{
-//            if(res.data=="ok"){
-//                this.$router.push("/userMessage")
-//            }
-//        })
-//      }
 
 
     }

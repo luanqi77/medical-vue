@@ -10,7 +10,7 @@
       style="width: 100%" align="center">
       <el-table-column
         prop="uid"
-        label="uid"
+        label="序号"
         width="60">
       </el-table-column>
       <el-table-column
