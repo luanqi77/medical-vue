@@ -58,9 +58,11 @@
       </el-table-column>
 
       <el-table-column
-        prop="pic"
         label="头像"
         width="150">
+        <template slot-scope="docter">
+          <el-image :src="docter.row.pic" style="width: 50px;height: 50px;"></el-image>
+        </template>
       </el-table-column>
 
       <el-table-column label="操作" width="180">

@@ -19,7 +19,7 @@
       </el-table-column>
       <el-table-column
         prop="g_time"
-        label="时间">
+        label="时间" >
       </el-table-column>
       <el-table-column
         prop="syn"

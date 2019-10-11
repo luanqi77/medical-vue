@@ -42,7 +42,7 @@
         var url = "api/insertYao"
         axios.post(url,this.Yao).then(res=>{
           if (res.data!='') {
-            this.$router.push({path:"/Yao"})
+            this.$router.push({path:"/CRUD/Yao"})
           }else if(res.data=='') {
             alert("添加失败！")
           }

@@ -56,7 +56,7 @@
         axios.post(url, this.Yao).then(res => {
           if (res.data != null) {
             alert("修改成功！")
-            this.$router.push('/Yao')
+            this.$router.push('/CRUD/Yao')
           } else {
             alert("修改失败")
           }

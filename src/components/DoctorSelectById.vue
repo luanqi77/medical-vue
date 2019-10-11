@@ -29,7 +29,7 @@
       <br>
 
       <el-form-item label="创建时间">
-        <el-input v-model="doctor.createTime"  readonly  ></el-input>
+        <el-input v-model="doctor.createTime" type="date"></el-input>
       </el-form-item>
       <br>
 
@@ -44,7 +44,7 @@
       <br>
 
       <el-form-item label="工作时间">
-        <el-input v-model="doctor.workTime"></el-input>
+        <el-input v-model="doctor.workTime" type="date"></el-input>
       </el-form-item>
       <br>
 
@@ -90,7 +90,7 @@
         axios.post(url, this.doctor).then(res => {
           if (res.data !=null) {
             alert("修改成功！")
-            this.$router.push('/doctorListPage')
+            this.$router.push('/CRUD/doctorListPage')
           }else {
             alert("修改失败")
 

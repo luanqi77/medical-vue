@@ -33,7 +33,7 @@
         axios.post(url, this.partment).then(res => {
           if (res.data != null) {
             alert("修改成功！")
-            this.$router.push('/PartmentListPage')
+            this.$router.push('/CRUD/PartmentListPage')
           } else {
             alert("修改失败")
 

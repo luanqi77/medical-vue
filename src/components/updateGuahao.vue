@@ -12,7 +12,7 @@
       </el-form-item>
       <br>
       <el-form-item label="时间" prop="g_time">
-        <el-input v-model="Guahao.g_time"></el-input>
+        <el-input v-model="Guahao.g_time" type="date"></el-input>
       </el-form-item>
       <br>
       <el-form-item label="科室" prop="syn">
@@ -76,7 +76,7 @@
         axios.post(url, this.Guahao).then(res => {
           if (res.data != null) {
             alert("修改成功！")
-            this.$router.push('/GuahaoList')
+            this.$router.push('/CRUD/GuahaoList')
           } else {
             alert("修改失败")
           }

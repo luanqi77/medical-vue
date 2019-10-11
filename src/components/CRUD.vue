@@ -62,9 +62,9 @@
 
 <script>
   export default{
-      mounted(){
+      /*mounted(){
         this.$router.push('/CRUD/doctorListPage')
-      }
+      }*/
   }
 </script>
 
