@@ -29,7 +29,7 @@
       <br>
 
       <el-form-item label="创建时间">
-        <el-input v-model="doctor.createTime"></el-input>
+        <el-input v-model="doctor.createTime"  readonly  ></el-input>
       </el-form-item>
       <br>
 
