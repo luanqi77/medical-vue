@@ -87,7 +87,7 @@ export default new Router({
       name: 'appointSelect',
       component: appointSelect
     },
-    { path:'/',
+    { path:'/adminLogin',
       name: 'adminLogin',
       component: adminLogin
     }, {

@@ -12,17 +12,17 @@
       <el-table-column
         prop="pid"
         label="科室号"
-        width="100">
+        width="300">
       </el-table-column>
 
       <el-table-column
         prop="name"
         label="科室名"
-        width="150">
+        width="300">
       </el-table-column>
 
 
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="300">
 
         <template slot-scope="partment">
           <el-button type="primary" icon="el-icon-edit" circle @click="updatePartment(partment.row.pid)"></el-button>

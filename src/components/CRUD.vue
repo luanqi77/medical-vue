@@ -1,46 +1,63 @@
 <template>
 
-  <div id="big">
+  <div>
 
-    <!--左边侧边栏-->
-    <div id="left">
-      <el-row class="tac">
-        <el-col :span="20">
-          <h5>后台查询</h5>
-          <el-menu default-active="4" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>数据管理</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1">
-                  <router-link to="/CRUD/doctorListPage">医师表</router-link>
-                </el-menu-item>
-                <el-menu-item index="1-2">
-                  <router-link to="/CRUD/userListPage">患者表</router-link>
-                </el-menu-item>
-                <el-menu-item index="1-3">
-                  <router-link to="/CRUD/partmentListPage">科室表</router-link>
-                </el-menu-item>
-                <el-menu-item index="1-4">
-                  <router-link to="/CRUD/DoctorAnswerListPage">医生回复表</router-link>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-          </el-menu>
-        </el-col>
-      </el-row>
+    <img src="../assets/image/adminHeaderPage.png">
+
+    <div id="big">
+
+
+      <!--左边侧边栏-->
+      <div id="left">
+        <el-row class="tac">
+          <el-col :span="20">
+            <h5>后台分类</h5>
+            <el-menu default-active="4" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+              <el-submenu index="1">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span>数据管理</span>
+                </template>
+                <el-menu-item-group>
+                  <el-menu-item index="1-1">
+                    <router-link to="/CRUD/doctorListPage">医师表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-2">
+                    <router-link to="/CRUD/userListPage">患者表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-3">
+                    <router-link to="/CRUD/partmentListPage">科室表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-4">
+                    <router-link to="/CRUD/DoctorAnswerListPage">医生回复表</router-link>
+                  </el-menu-item>
+                </el-menu-item-group>
+              </el-submenu>
+            </el-menu>
+          </el-col>
+        </el-row>
+      </div>
+
+
+      <div id="right">
+
+        <router-view/>
+      </div>
+
     </div>
-
-
-    <div id="right">
-
-      <router-view/>
-    </div>
-
   </div>
 </template>
+
+<script>
+  export default{
+      mounted(){
+        this.$router.push('/CRUD/doctorListPage')
+      }
+  }
+</script>
+
+
+
 <style>
   /*总的div*/
   #big {
@@ -52,8 +69,9 @@
   /*左边菜单*/
   #left {
     background-color: linen;
+
     width: 150px;
-    height: 815px;
+    height: 450px;
     float: left;
   }
 
@@ -64,8 +82,6 @@
     float: left;
 
   }
-
-
 
   /*左边菜单宽度*/
   .el-col-20 {
