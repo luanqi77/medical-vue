@@ -144,14 +144,6 @@
     data(){
           return {
             userQuestions:[],
-            userQuestion:
-              {
-                  uid:1,
-//                  description:'',
-//                  createTime: '',
-//                  age:'',
-//                  sex:''
-              },
 
               imageUrl: '',
               user:{
@@ -222,7 +214,10 @@
           var url="api/updateUsers"
           axios.post(url,this.user).then(res=>{
               if (res.data=="ok"){
-                  alert("修改成功")
+                this.$message({
+                  message: '修改成功',
+                  type: 'success'
+                });
                 var username=this.$route.params.username;
                 this.$router.push({path:"/userMain/"+username})
               }

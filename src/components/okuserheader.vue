@@ -38,7 +38,7 @@
     methods: {
       search: function () {
         if (this.searchinput == '') {
-          alert('请输入搜索关键字')
+          this.$message('请输入搜索关键字');
         } else {
           var road = 'https://www.baidu.com/s?ie=utf-8&si=muzhi.baidu.com&ct=2097152&wd=' + this.searchinput
           window.location.href = road;
@@ -51,10 +51,10 @@
           message: '自动返回主页',
           type: 'success'
         });
-        this.$router.push({name:'index'})
+        this.$router.push({path:"/index/main"})
       },
       backindex:function () {
-        this.$router.push({name:'index'})
+        this.$router.push({path:"/index/main"})
       },
       ask(){
         var username=this.$route.params.username;

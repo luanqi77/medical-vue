@@ -1,9 +1,9 @@
 <template>
   <div >
-    <!--<el-button plain @click="dialogFormVisible = true">登录</el-button>-->
+
     <el-link @click="dialogFormVisible = true" style="margin-left: 1250px;height: 30px ;font-size: 16px">登录</el-link>
     <el-divider direction="vertical"></el-divider>
-    <el-dialog title="欢迎您，病友！请登录" :visible.sync="dialogFormVisible" center >
+    <el-dialog title="欢迎您，病友！请登录" :visible.sync="dialogFormVisible" center  >
 
       <!-- 插入测试 -->
       <el-form :model="user" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm"
@@ -28,6 +28,7 @@
         <el-button type="primary" @click="submitForm(user.username)">登 录</el-button>
       </div>
     </el-dialog>
+
   </div>
 </template>
 <script>
@@ -91,11 +92,14 @@
         var url="api/login"
         axios.post(url,this.user).then(res=>{
           if (res.data=="main"){
-            alert("登录成功")
+            this.$message({
+              message: '登录成功',
+              type: 'success'
+            });
             this.$router.push({path:"/userMain/"+username})
 
           }else {
-            alert("密码错误或用户不存在")
+            this.$message.error('密码错误或用户不存在');
           }
         })
       },

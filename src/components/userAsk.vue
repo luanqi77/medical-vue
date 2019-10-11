@@ -126,7 +126,7 @@
               var username=this.$route.params.username;
               this.$router.push({path:"/userMain/"+username})
             }else {
-                alert("请填写信息")
+              this.$message.error('请填写信息');
             }
         })
       }

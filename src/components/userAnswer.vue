@@ -17,7 +17,7 @@
 
 
                 <form model="questions">
-                <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin-left: -55px;width: 500px" >
+                <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin-left: 80px;width: 500px;text-align: left" >
                   <i class="el-icon-s-custom"></i>{{questions.description}}
                   </div>
                   <el-button plain @click="toAsk()" style="background-color: darkturquoise;color: white;
@@ -43,9 +43,25 @@
               </div>
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:75%;height: 300px;margin-top: 2px;
               margin: auto;float: left" >
-                <div style="font-size: 18px;margin-left: -630px;margin-top: 30px">医生回答<i class="el-icon-star-off"></i>
+                <div style="font-size: 18px;margin-left: -650px;margin-top: 30px">医生回答<i class="el-icon-star-off"></i>
                   <i class="el-icon-star-off"></i></div>
-                <div style="margin-left: -580px;margin-top: 20px">李医生:你的脑子不正常</div>
+                <div style="margin:auto;margin-top: 20px;height: 200px">
+                    <div style="margin: auto;height: 50px">
+                      <div style="float:left;width: 50px;height: 50px;margin-left: 80px"> <el-avatar icon="el-icon-user-solid"></el-avatar></div>
+                      <form model="docter">
+                        <div style="float: left;width: 150px;height: 50px;line-height: 40px;font-size: 18px">医生:{{docter.dname}}</div>
+                        <div style="float: left;width: 160px;height: 50px;line-height: 40px;font-size: 18px">从业时间:{{docter.workyears}}年</div>
+                      </form>
+                    </div>
+                    <div style="margin: auto;height: 150px;">
+                        <form model="doctorAnswer">
+                            <div style="width: 600px;height: 50px;font-size: 18px;margin-left: 150px;text-align: left">{{doctorAnswer.answer}}</div>
+                            <div style="width: 200px;height: 50px;margin-left: 700px;margin-top: 40px">{{doctorAnswer.createTime}}</div>
+                        </form>
+
+                    </div>
+
+                </div>
 
               </div>
               <img src="../assets/images/gg.png" style="margin: auto;width: 24%">
@@ -90,7 +106,14 @@
                 sex:''
 
               },
-              users:[]
+              docter:{
+                  dname:'',
+                  workyears:''
+              },
+            doctorAnswer:{
+                  answer:'',
+                  createTime:''
+            }
           }
       },
       mounted(){
@@ -98,6 +121,16 @@
         var url="api/selectUserQuestion"
         axios.post(url,{description:description}).then(res=>{
           this.questions=res.data;
+        })
+
+        var  urls="api/selectDocter"
+        axios.post(urls,{description:description}).then(res=>{
+            this.docter=res.data;
+        })
+
+        var urlss="api/selectAnswer"
+        axios.post(urlss,{description:description}).then(res=>{
+            this.doctorAnswer=res.data;
         })
       },
     methods: {
@@ -109,15 +142,6 @@
         var username=this.$route.params.username;
         this.$router.push({path:"/userAsk/"+username})
       }
-//      submitForm(){
-//        var url="api/insertQuestion"
-//        axios.post(url,this.question).then(res=>{
-//            if(res.data=="ok"){
-//                this.$router.push("/userMessage")
-//            }
-//        })
-//      }
-
 
     }
   }

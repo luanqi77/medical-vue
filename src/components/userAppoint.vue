@@ -26,7 +26,7 @@
                       <div style="font-size: 16px;line-height: 70px;width: 200px">{{hospital.hname}}</div>
                       <div style="font-size: 14px;width: 200px;line-height: 45px;">{{hospital.level}}</div>
                       <div style="font-size: 14px;line-height: 45px;width: 300px"><i class="el-icon-map-location"></i> {{hospital.address}}</div>
-                      <el-link @click="appoint()" type="primary" style="margin-left: 270px ;margin-top: -215px;font-size: 18px"  >预约挂号</el-link>
+                      <el-link @click="appoint(hospital.hname)" type="primary" style="margin-left: 270px ;margin-top: -215px;font-size: 18px"  >预约挂号</el-link>
                       <el-link @click="tui()" type="warning" style="margin-left: 270px ;margin-top: -150px;font-size: 18px"  >推荐专家</el-link>
                     </div>
 
@@ -143,7 +143,6 @@
           this.user=res.data;
         });
 
-
       },
     methods: {
       handleAvatarSuccess(res, file) {
@@ -177,20 +176,22 @@
         var username=this.$route.params.username;
         this.$router.push({path:"/index/"+username})
       },
-      appoint(){
+      appoint(hname){
         var username=this.$route.params.username;
-          this.$router.push({path:"/appointSelect/"+username})
+          this.$router.push({path:"/appointSelect/"+username+"/"+hname})
       },
       tui(){
         var username=this.$route.params.username;
         this.$router.push({path:"/appointSelect/"+username})
       },
       updateUser(){
-
         var url="api/updateUsers"
         axios.post(url,this.user).then(res=>{
           if (res.data=="ok"){
-            alert("修改成功")
+            this.$message({
+              message: '修改成功',
+              type: 'success'
+            });
             var username=this.$route.params.username;
             this.$router.push({path:"/userMain/"+username})
           }

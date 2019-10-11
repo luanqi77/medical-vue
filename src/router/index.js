@@ -97,7 +97,7 @@ export default new Router({
       component: userAnswer
     },
     {
-      path: '/appointSelect/:username',
+      path: '/appointSelect/:username/:hname',
       name: 'appointSelect',
       component: appointSelect
     },
