@@ -10,23 +10,23 @@
       <el-table-column
         prop="answer"
         label="答复"
-        width="250">
+        width="400">
       </el-table-column>
 
       <el-table-column
         prop="createTime"
         label="创建时间"
-        width="130">
+        width="300">
       </el-table-column>
 
       <el-table-column
         prop="state"
         label="状态"
-        width="120">
+        width="200">
       </el-table-column>
 
 
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="250">
 
         <template slot-scope="DoctorAnswer">
           <el-button type="danger" icon="el-icon-delete" circle @click="del(DoctorAnswer.row.aid)"></el-button>

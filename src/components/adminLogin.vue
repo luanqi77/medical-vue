@@ -1,5 +1,7 @@
 <template>
   <div>
+    <img src="../assets/image/adminHeaderPage.png">
+    <h1>请输入账号密码登录</h1>
     <el-form :inline="true" :model="admin" class="demo-form-inline">
 
       <el-form-item label="姓名">
