@@ -13,7 +13,6 @@
 
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:76%;
             height: 150px;margin-top: 10px;float: left;margin: auto" >
-                <!--<span style="font-size: 18px;line-height: 80px;margin-left: -700px">真的是什么问题</span>-->
                 <form model="questions">
                 <div style="font-size: 18px;color: darkturquoise;line-height: 80px;margin-left: -100px;" >
                   <span>科室 :</span>

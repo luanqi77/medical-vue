@@ -1,11 +1,11 @@
-<template>
-  <div>
-    <span style="margin-left: 40px">请您注册账号！</span>
-    <!--<el-divider direction="vertical"></el-divider>-->
-    <!--<span style="">我已注册,去<userlogin><el-button  @click="dialogFormVisible = true">登录</el-button></userlogin></span>-->
-
-    <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
-    <el-form :inline="true" :model="user" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+<template >
+  <div id="beijin">
+  <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);width: 30%;
+  margin: auto;margin-top: 150px;">
+    <span style="margin:auto;line-height: 30px;font-size: 25px;">注册</span>
+    <el-divider></el-divider>
+    <div style="margin-left: -30px">
+    <el-form :inline="true" :model="user" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
       <el-form-item label="用户名" prop="username">
         <el-input v-model="user.username" @blur="fun()"></el-input>
       </el-form-item><br>
@@ -26,11 +26,12 @@
         <el-button type="primary" @click="sendMail()">{{content}}</el-button>
       </el-form-item>
     </el-form>
-    <div style="float: left">
-      <foot></foot>
     </div>
+    <!--<div style="float: left;margin-left: 50px;margin-top: 150px">-->
+      <!--<foot></foot>-->
+    <!--</div>-->
   </div>
-
+  </div>
 </template>
 <script>
   import userlogin from './userlogin'
@@ -38,7 +39,9 @@
   import foot from './foot'
   import ElDivider from "../../node_modules/element-ui/packages/divider/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+
   export default{
+    name: "beijin",
     components: {
       foot,
       userlogin,
@@ -104,7 +107,7 @@
         var url="api/checkUsername"
         axios.post(url,this.user).then(res=>{
           if (res.data=="no"){
-            alert("用户已存在")
+            this.$message('用户已存在');
           }
         })
       },
@@ -112,7 +115,7 @@
         var url="api/checkCode"
         axios.post(url,this.user).then(res=>{
           if (res.data=="no"){
-            alert("验证码有误")
+            this.$message('验证码有误');
           }
         })
       },
@@ -123,9 +126,12 @@
         var url='api/sendMail?email='+this.user.email;
         axios.get(url).then(res=>{
           if (res.data=="success"){
-            alert("发送成功")
+            this.$message({
+              message: '发送成功',
+              type: 'success'
+            });
           }else {
-            alert("发送失败")
+            this.$message.error('发送失败');
           }
         })
         let clock=window.setInterval(()=>{
@@ -145,9 +151,8 @@
               if (res.data=="success"){
                 var username=this.$route.params.username;
                   this.$router.push({path:"/index/"+username})
-//                this.$router.push("/index")
               }else {
-                  alert("注册失败")
+                this.$message.error('注册失败');
               }
           })
         },
@@ -155,3 +160,15 @@
   }
 
 </script>
+<style>
+
+  #beijin{
+    background: url("../assets/images/bbb.jpg");
+    background-size: 100% 100%;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    margin-top:-60px;
+  }
+</style>
+
