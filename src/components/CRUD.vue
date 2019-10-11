@@ -12,7 +12,7 @@
         <el-row class="tac">
           <el-col :span="20">
             <h5>后台分类</h5>
-            <el-menu default-active="4" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+            <el-menu default-active="8" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
               <el-submenu index="1">
                 <template slot="title">
                   <i class="el-icon-location"></i>
@@ -30,6 +30,18 @@
                   </el-menu-item>
                   <el-menu-item index="1-4">
                     <router-link to="/CRUD/DoctorAnswerListPage">医生回复表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-5">
+                    <router-link to="/CRUD/Yao">药品数据表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-6">
+                    <router-link to="/CRUD/HospitalList">医院表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-7">
+                    <router-link to="/CRUD/NewsList">新闻表</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="1-8">
+                    <router-link to="/CRUD/GuahaoList">挂号表</router-link>
                   </el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
