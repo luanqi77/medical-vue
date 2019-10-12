@@ -10,7 +10,7 @@
       </el-form-item>
       <br>
       <el-form-item label="创建时间" prop="create_time">
-        <el-input v-model="News.createTime"></el-input>
+        <el-input v-model="News.createTime" type="date"></el-input>
       </el-form-item>
       <br>
       <el-form-item label="作者" prop="author">
