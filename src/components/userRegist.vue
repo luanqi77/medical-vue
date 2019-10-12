@@ -150,6 +150,10 @@
           axios.post(url,this.user).then(res=>{
               if (res.data=="success"){
                 var username=this.$route.params.username;
+                this.$message({
+                  message: '注册成功',
+                  type: 'success'
+                });
                   this.$router.push({path:"/index/"+username})
               }else {
                 this.$message.error('注册失败');

@@ -66,21 +66,15 @@
 
           <div style="float: left;width: 200px;height: 576px;box-shadow: 0 2px 4px rgba(0, 0, 0, .12);margin-top: 10px">
             <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;
-          height: 50px; font-size: 18px;color: darkturquoise;line-height: 50px" >上传头像</div>
+          height: 50px; font-size: 18px;color: darkturquoise;line-height: 50px" >个人资料</div>
 
             <div style="width: 200px;height: 190px">
-              <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
+              <form model="user">
+                <el-image :src="user.pic" style="margin: auto;width: 180px;height: 180px"></el-image>
+              </form>
             </div>
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;
-              height: 335px; font-size: 16px;color: darkturquoise;line-height: 40px" >个人资料
+              height: 335px; font-size: 16px;color: darkturquoise;line-height: 40px" >
                 <form model="user">
                   <div style="font-size: 16px;color: darkturquoise;line-height: 40px" >用户名:
                     <el-divider direction="vertical"></el-divider>{{user.username}}</div>

@@ -3,7 +3,7 @@
 
     <el-link @click="dialogFormVisible = true" style="margin-left: 1250px;height: 30px ;font-size: 16px">登录</el-link>
     <el-divider direction="vertical"></el-divider>
-    <el-dialog title="欢迎您，病友！请登录" :visible.sync="dialogFormVisible" center  >
+    <el-dialog title="欢迎您，病友！请登录" :visible.sync="dialogFormVisible" center  id="bg">
 
       <!-- 插入测试 -->
       <el-form :model="user" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm"
@@ -31,6 +31,16 @@
 
   </div>
 </template>
+<style>
+  #bg{
+    background: url("../assets/images/bbb.jpg");
+    background-size: 100% 100%;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    margin-top:-60px;
+  }
+</style>
 <script>
   import axios from 'axios'
   import ElTabs from "../../node_modules/element-ui/packages/tabs/src/tabs";

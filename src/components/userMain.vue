@@ -54,14 +54,24 @@
           height: 50px; font-size: 18px;color: darkturquoise;line-height: 50px" >修改头像</div>
 
             <div style="width: 200px;height: 190px">
+              <!--<el-upload-->
+                <!--class="avatar-uploader"-->
+                <!--:multiple="true"-->
+                <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                <!--:show-file-list="false"-->
+                <!--:on-success="handleAvatarSuccess"-->
+                <!--:before-upload="beforeAvatarUpload">-->
+                <!--<img v-if="imageUrl" :src="imageUrl" class="avatar">-->
+                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+              <!--</el-upload>-->
+
               <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                class="upload-file"
+                drag
+                :action="doUpload"
+                :before-upload="beforeUpload">
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
               </el-upload>
             </div>
             <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;
@@ -97,6 +107,9 @@
 
 </template>
 <style>
+  .el-upload-dragger{
+    width: 190px;
+  }
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
@@ -172,19 +185,31 @@
       },
     methods: {
       handleAvatarSuccess(res, file) {
+//        var username=this.$route.params.username;
+//          var url='/api/uploadpics/'+username
+//          axios.post(url,{file:file}).then(res=>{
+//            this.imageUrl = 'res.data/'+re.key
+//          })
+
         this.imageUrl = URL.createObjectURL(file.raw);
       },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
+      beforeUpload(file){
+        var username=this.$route.params.username;
+        var url='api/uploadpics/'+username
+        let fd=new FormData();
+        fd.append('file',file);
+        axios.post(url,fd).then(res=>{
+          if(res.data=="ok"){
+            this.$message({
+              message: '修改成功',
+              type: 'success'
+            });
+            var username=this.$route.params.username;
+            this.$router.push({path:"/userMessage/"+username})
+          }else{
+            this.$message.error('上传失败，请检查您的网络')
+          }
+        })
       },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {
@@ -219,7 +244,7 @@
                   type: 'success'
                 });
                 var username=this.$route.params.username;
-                this.$router.push({path:"/userMain/"+username})
+                this.$router.push({path:"/userMessage/"+username})
               }
           })
       },

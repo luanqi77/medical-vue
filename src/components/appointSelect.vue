@@ -27,7 +27,7 @@
                   </el-radio-group>
                   <br>
                   <div style="margin-top: -15px;margin-left:-10px;width: 100%">就诊日期 :<input type="date" v-model="guahao.g_time" style="width: 200px;
-                  margin-left: 10px;margin-top: 20px;height: 20px;color: darkturquoise" ></input>
+                  margin-left: 10px;margin-top: 20px;height: 20px;color: darkturquoise;border-radius: 10px" ></input>
                     <el-button type="primary" @click="submitForm()" style="margin-left: 450px;font-size: 18px">提交预约</el-button>
                   </div>
 
@@ -55,6 +55,10 @@
                       label="头像"
                       width="250"
                     >
+
+                      <template slot-scope="docter">
+                        <el-avatar shape="circle" :size="60"  :src="docter.row.pic"></el-avatar>
+                      </template>
                     </el-table-column>
                     <el-table-column
                       prop="dname"
@@ -141,7 +145,7 @@
               docter:[],
               params: {
                 page: '1',
-                size: '4',
+                size: '3',
               },
               guahao:{
                   gname:'',

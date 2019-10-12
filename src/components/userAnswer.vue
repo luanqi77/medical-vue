@@ -25,7 +25,7 @@
                   <div style="color: darkturquoise;margin-top: 10px;margin-left: 600px; font-size: 16px;width: 350px" >
                      {{questions.createTime}}
                   </div>
-                  <div style="color: darkturquoise;margin-top: -45px;margin-left: 120px;font-size: 16px;width: 40px" >
+                  <div style="color: darkturquoise;margin-top: -45px;margin-left: 120px;font-size: 16px;width: 50px" >
                    {{questions.age}}岁
                   </div>
                   <div style="color: darkturquoise;margin-top: -22px;margin-left: 90px;width: 20px" >
