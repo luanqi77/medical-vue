@@ -41,7 +41,8 @@
       <el-table-column
         prop="createTime"
         label="创建时间"
-        width="100">
+        width="100"
+        :formatter="dateFormat">
       </el-table-column>
       <el-table-column
         prop="address"
@@ -104,6 +105,10 @@
       this.query();
     },
     methods: {
+      dateFormat:function(row,column){
+        var t=new Date(row.createTime);//row 表示一行数据, updateTime 表示要格式化的字段名称
+        return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate();
+      },
       addUser: function () {
 
         this.$router.push({name: 'insertUser'})

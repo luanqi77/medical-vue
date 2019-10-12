@@ -19,7 +19,8 @@
       </el-table-column>
       <el-table-column
         prop="g_time"
-        label="时间" >
+        label="时间"
+        :formatter="dateFormat">
       </el-table-column>
       <el-table-column
         prop="syn"
@@ -70,6 +71,10 @@
       this.query();
     },
     methods: {
+      dateFormat:function(row,column){
+        var t=new Date(row.g_time);//row 表示一行数据, updateTime 表示要格式化的字段名称
+        return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate();
+      },
 
       query: function () {
         var url = 'api/findAllGuahao'
