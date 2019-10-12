@@ -34,6 +34,7 @@
                   prop="createTime"
                   label="日期"
                   width="237"
+                  :formatter="dateFormat"
                 >
                 </el-table-column>
                 <el-table-column
@@ -251,7 +252,12 @@
       toUserAnswer(description){
         var username=this.$route.params.username;
           this.$router.push({path:"/userAnswer/"+description+"/"+username})
+      },
+      dateFormat:function(row,column){
+        var t=new Date(row.createTime);//row 表示一行数据, updateTime 表示要格式化的字段名称
+        return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate();
       }
+
     }
   }
 

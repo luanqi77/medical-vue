@@ -22,8 +22,8 @@
                   </div>
                   <el-button plain @click="toAsk()" style="background-color: darkturquoise;color: white;
                   margin-right: -700px ;margin-top: -10px" >向医生提问</el-button>
-                  <div style="color: darkturquoise;margin-top: 10px;margin-left: 600px; font-size: 16px;width: 350px" >
-                     {{questions.createTime}}
+                  <div style="color: darkturquoise;margin-top: 10px;margin-left: 641px; font-size: 16px;width: 350px" >
+                     {{questions.createTime.substr(0,10)}}
                   </div>
                   <div style="color: darkturquoise;margin-top: -45px;margin-left: 120px;font-size: 16px;width: 50px" >
                    {{questions.age}}岁
@@ -56,7 +56,7 @@
                     <div style="margin: auto;height: 150px;">
                         <form model="doctorAnswer">
                             <div style="width: 600px;height: 50px;font-size: 18px;margin-left: 150px;text-align: left">{{doctorAnswer.answer}}</div>
-                            <div style="width: 200px;height: 50px;margin-left: 700px;margin-top: 40px">{{doctorAnswer.createTime}}</div>
+                            <div style="width: 200px;height: 50px;margin-left: 720px;margin-top: 40px">{{doctorAnswer.createTime.substr(0,10)}}</div>
                         </form>
 
                     </div>
