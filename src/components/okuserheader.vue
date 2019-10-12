@@ -54,7 +54,8 @@
         this.$router.push({path:"/index/main"})
       },
       backindex:function () {
-        this.$router.push({path:"/index/main"})
+        var username=this.$route.params.username;
+        this.$router.push({path:"/index/"+username})
       },
       ask(){
         var username=this.$route.params.username;

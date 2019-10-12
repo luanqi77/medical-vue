@@ -175,6 +175,7 @@
         index(){
           var username=this.$route.params.username;
           this.$router.push({path:"/index/"+username})
+
         },
         updateUser(){
           var url="api/updateUsers"
