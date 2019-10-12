@@ -32,6 +32,9 @@
     <el-table-column
       prop="pic"
       label="图片">
+      <template slot-scope="Hospitals">
+        <el-image :src="Hospitals.row.pic" style="width: 50px;height: 50px;"></el-image>
+      </template>
     </el-table-column>
     <el-table-column
       prop="description"
