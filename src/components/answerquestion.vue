@@ -27,7 +27,7 @@
         <el-form :inline="true" :model="answer" status-icon :rules="rules" class="demo-ruleForm">
           <el-form-item  prop="description" label=" ">
             <div style="float: left;margin-left: 70px">患者年龄：{{question.age}}</div><br>
-            <div style="float: left;margin-left: 70px">患者性别：{{question.sex}}</div><br>
+            <div style="float: left;margin-left: 70px">患者性别：{{question.sex==1?'男':'女'}}</div><br>
             <div style="float: left;margin-left: 70px">问题描述：{{question.description}}</div>
             <el-input
               type="textarea"

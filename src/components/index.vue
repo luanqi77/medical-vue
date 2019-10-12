@@ -105,53 +105,38 @@
     <h2 style="line-height: 15px;color: lightpink;margin: auto;height: 10px">药品推荐</h2><br>
     <el-divider><i class="el-icon-lightning"></i></el-divider>
     <el-main style="width: 75%;margin: auto">
-      <el-carousel trigger="click" height="440px" style="width: 49%;float: left">
+      <el-carousel trigger="click" height="424px" style="width: 424px;float: left">
         <!--<el-carousel-item v-for="item in 4" :key="item">-->
-        <el-carousel-item v-for="pic in pics" :key="pic">
-          <h3 class="small">{{ item }}</h3>
+        <el-carousel-item v-for="item in pics" :key="item">
+          <div class="grid-content">
+            <div>
+              <img :src="item.src" width="424px" height="424px">
+            </div>
+          </div>
         </el-carousel-item>
       </el-carousel>
       <el-table
-        :data="tableData"
-        style="width: 49%;float: left;height: 440px;line-height: 30px;margin-left: 24px">
-        <el-table-column type="expand">
-          <template slot-scope="props">
-            <el-form label-position="left" inline class="demo-table-expand">
-              <el-form-item label="商品名称">
-                <span>{{ props.row.name }}</span>
-              </el-form-item>
-              <el-form-item label="所属店铺">
-                <span>{{ props.row.shop }}</span>
-              </el-form-item>
-              <el-form-item label="商品 ID">
-                <span>{{ props.row.id }}</span>
-              </el-form-item>
-              <el-form-item label="店铺 ID">
-                <span>{{ props.row.shopId }}</span>
-              </el-form-item>
-              <el-form-item label="商品分类">
-                <span>{{ props.row.category }}</span>
-              </el-form-item>
-              <el-form-item label="店铺地址">
-                <span>{{ props.row.address }}</span>
-              </el-form-item>
-              <el-form-item label="商品描述">
-                <span>{{ props.row.desc }}</span>
-              </el-form-item>
-            </el-form>
-          </template>
+        :data="yaos"
+        style="width: 50%;line-height: 30px;margin-left: 524px"
+        height="424">
+        <!--<el-table-->
+        <!--:data="yaos"-->
+        <!--style="width: 600px;float: left;height: 424px;line-height: 30px;margin-left: 24px">-->
+        <el-table-column
+          fixed
+          prop="y_name"
+          label="药品名称"
+          width="200px">
         </el-table-column>
         <el-table-column
-          label="名称"
-          prop="name" >
-        </el-table-column>
-        <el-table-column
+          prop="address"
           label="产地"
-          prop="address" >
+          width="200px">
         </el-table-column>
         <el-table-column
-          label="具体信息"
-          prop="desc" >
+          prop="des"
+          label="详情"
+          width="450px">
         </el-table-column>
       </el-table>
     </el-main>
@@ -160,48 +145,61 @@
     <el-header></el-header>
     <h2 style="line-height: 15px;color: green;margin: auto;height: 10px">健康资讯</h2><br>
     <el-divider><i class="el-icon-lightning"></i></el-divider>
-    <el-main style="width: 75%;margin: auto">
-
+    <el-main style="width: 75%;margin: auto;">
+      <!--<el-table-->
+      <!--:data="news"-->
+      <!--stripe-->
+      <!--style="width: 60%;line-height: 30px;float: left">-->
       <el-table
-        :data="tableData"
-        stripe
-        style="width: 100%;line-height: 30px;">
-        <el-table-column
-          prop="date"
-          label="发表日期"
-          width="180">
-        </el-table-column>
+        :data="news"
+        style="width: 50%;line-height: 30px;float: left"
+        height="400">
         <el-table-column
           prop="author"
           label="作者"
-          width="180">
+          width="100">
         </el-table-column>
+        <!--<el-table-column-->
+        <!--prop="title"-->
+        <!--label="标题">-->
+        <!--</el-table-column>-->
         <el-table-column
-          prop="title"
-          label="标题">
+          label="标题"
+          prop="title">
+          <template  slot-scope="news">
+            <el-button @click="newsinfo(news.row.nid)">{{news.row.title}}</el-button>
+          </template>
         </el-table-column>
       </el-table>
+      <el-carousel trigger="click" height="400px" style="width: 400px;float: left;margin-left: 100px">
+        <!--<el-carousel-item v-for="item in 4" :key="item">-->
+        <el-carousel-item v-for="item in pics" :key="item">
+          <div class="grid-content">
+            <div>
+              <img :src="item.src" width="400px" height="400px">
+            </div>
+          </div>
+        </el-carousel-item>
+      </el-carousel>
     </el-main>
     <!--</el-container>-->
     <div id="floatbtn">
-      <img src="../assets/images/doctor.png" style="float: left">
+      <img src="../assets/index/doctor.png" style="float: left">
       <h5>医生看这里</h5>
-      <el-button style="height: 30px;line-height:2px;width:100px;margin: auto;text-align: center" @click="docter()">登陆/注册</el-button>
-      <!--<el-button style="height: 40px;width: 10px;float: left">医生登陆</el-button>-->
-    </div>
-    <div style="float: left">
-      <foot></foot>
+      &nbsp;<el-button style="width: 90px;height: 30px;line-height: 5px"><docterwel></docterwel></el-button>
+      <el-button style="width: 90px;height: 30px;line-height: 5px" @click="docterregist()">注册</el-button>
     </div>
   </div>
 </template>
-
 <script>
+  import axios from 'axios'
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import ElLink from "../../node_modules/element-ui/packages/link/src/main";
   import ElContainer from "../../node_modules/element-ui/packages/container/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import foot from './foot'
   import userlogin from './userlogin'
+  import docterwel from './docterwel.vue';
   export default {
     components: {
       ElButton,
@@ -209,18 +207,26 @@
       ElLink,
       ElInput,
       foot,
-      userlogin
+      userlogin,
+      docterwel
     },
     name: 'index',
     data () {
       return {
         searchinput: '',
         pics:[
-          {path:'../assets/lunbo/hanhan.bmp'},
-          {},
-          {}
-        ]
+          {src:require('../assets/index/lwdhw.jpg')},
+          {src:require('../assets/index/sbp.jpg')},
+          {src:require('../assets/index/sqdbw.jpg')},
+          {src:require('../assets/index/fkqjjn.jpg')},
+          {src:require('../assets/index/ydsy.jpg')}
+        ],
+        news:[],
+        yaos:[]
       }
+    },
+    mounted(){
+      this.getnews();
     },
     methods: {
       userRegist() {
@@ -247,6 +253,26 @@
       },
       docter:function () {
         this.$router.push({name:'docterlogin'})
+      },
+      newsinfo:function (msg) {
+        var nid = msg;
+        this.$router.push({path:'/newsinfo/'+nid})
+      },
+      getnews:function () {
+        var url='api/findNews'
+        axios.get(url).then(res=>{
+          this.news=res.data
+        })
+        this.getyaos();
+      },
+      getyaos:function () {
+        var url='api/findYao'
+        axios.get(url).then(res=>{
+          this.yaos=res.data
+        })
+      },
+      docterregist:function () {
+        this.$router.push({name:'docterregist'})
       }
     }
   }

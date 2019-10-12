@@ -1,6 +1,6 @@
 <template>
   <div>
-    <headerno></headerno>
+    <headerok></headerok>
     <div  style=" margin: auto;margin-top: 10px;width: 100%;height: 42px;
 border-radius:4px;background-color: darkturquoise;" >
       <div style="margin-right: 800px;font-size: 14px;line-height: 42px;color: white ;">
@@ -36,6 +36,8 @@ border-radius:4px;background-color: darkturquoise;" >
 
 <script>
   import axios from 'axios'
+  import okuserheader from  './okuserheader'
+  import headerok from './headerok.vue'
   import headerno from './headerno.vue';
   import ElForm from "../../node_modules/element-ui/packages/form/src/form";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
@@ -52,7 +54,9 @@ border-radius:4px;background-color: darkturquoise;" >
       ElButton,
       ElInput,
       ElForm,
-      headerno
+      headerno,
+      headerok,
+      okuserheader
     },
     data () {
       return {

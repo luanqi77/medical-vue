@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-header>
+      <el-header style="margin-top: -70px">
         <el-link @click="userlogin()" style="margin-left: 905px;height: 30px">登陆</el-link>
         <el-link @click="userregist()" style="margin-left: 50px;height: 30px">注册</el-link>
       </el-header>

@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import index from '@/components/index'
 import docterlogin from '@/components/docterlogin'
 import headerno from '@/components/headerno'
 import headerok from '@/components/headerok'
 import docterinfo from '@/components/docterinfo'
 import newsinfo from '@/components/newsinfo'
-import foot from '@/components/foot'
 import doctermain from '@/components/doctermain'
 import docterwel from '@/components/docterwel'
 import docterregist from '@/components/docterregist'
@@ -60,7 +58,7 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/index',
+      path: '/index/:username',
       name: 'index',
       component: index
     },

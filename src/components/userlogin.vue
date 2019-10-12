@@ -33,11 +33,11 @@
 </template>
 <style>
   #bg{
-    background: url("../assets/images/bbb.jpg");
+    background: url("../assets/images/timg.jpg");
     background-size: 100% 100%;
-    height: 100%;
+    height: 1080px;
     position: fixed;
-    width: 100%;
+    width: 1750px;
     margin-top:-60px;
   }
 </style>

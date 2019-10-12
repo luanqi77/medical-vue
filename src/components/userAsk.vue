@@ -125,8 +125,11 @@
             if(res.data=="ok"){
               var username=this.$route.params.username;
               this.$router.push({path:"/userMain/"+username})
-            }else {
+            }else if(res.data=="noMessage") {
               this.$message.error('请填写信息');
+            }else if(res.data=="no") {
+              this.$message.error('请先登录');
+              this.$router.push({path:"/index/main"})
             }
         })
       }

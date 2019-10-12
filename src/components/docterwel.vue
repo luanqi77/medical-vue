@@ -96,7 +96,7 @@
               confirmButtonText: '确定',
               type:'success'
             });
-            this.$router.push('doctermain/' + res.data)
+            this.$router.push({path: '/doctermain/' + res.data})
           } else {
             alert("密码错误或用户不存在")
           }

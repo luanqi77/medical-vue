@@ -1,6 +1,6 @@
 <template>
   <div>
-    <headerno></headerno>
+    <headerok></headerok>
     <div  style=" margin: auto;margin-top: 10px;width: 100%;height: 42px;
 border-radius:4px;background-color: darkturquoise;" >
       <div style="margin-right: 800px;font-size: 14px;line-height: 42px;color: white ;">
@@ -28,7 +28,7 @@ border-radius:4px;background-color: darkturquoise;" >
             </el-form-item>
             <el-form-item label="从业时间" style="width: 80%;">
               <el-col :span="11">
-                <p style="float: left;margin-top: auto;font-weight: 300;height: 0px;font-size: 15px">{{docter.workTime}}</p>
+                <p style="float: left;margin-top: auto;font-weight: 300;height: 0px;font-size: 15px">{{docter.workTime.substr(0,10)}}</p>
               </el-col>
             </el-form-item>
             <el-form-item label="性别" style="width: 50%">
@@ -80,6 +80,7 @@ border-radius:4px;background-color: darkturquoise;" >
 <script>
   import axios from 'axios'
   import headerno from './headerno.vue';
+  import headerok from './headerok.vue';
   import ElForm from "../../node_modules/element-ui/packages/form/src/form";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
@@ -95,7 +96,8 @@ border-radius:4px;background-color: darkturquoise;" >
       ElButton,
       ElInput,
       ElForm,
-      headerno
+      headerno,
+      headerok
     },
     data () {
       return {
