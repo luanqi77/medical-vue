@@ -54,7 +54,7 @@
         axios.post(url, this.News).then(res => {
           if (res.data !='0') {
             alert("修改成功！")
-            this.$router.push('/NewsList')
+            this.$router.push('/CRUD/NewsList')
           } else {
             alert("修改失败")
           }

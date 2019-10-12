@@ -54,9 +54,14 @@
         width="120">
       </el-table-column>
       <el-table-column
-        prop="pic"
         label="头像"
         width="150">
+        <template slot-scope="users">
+          <el-image :src="users.row.pic" style="width: 50px;height: 50px;"></el-image>
+        </template>
+       <!-- <div class="demo-basic&#45;&#45;circle">
+          <div class="block"><el-avatar :size="80" :src="users.pic"></el-avatar></div>
+        </div>-->
       </el-table-column>
 
       <el-table-column label="操作" width="200">

@@ -43,7 +43,7 @@
         var url = "api/insertNews"
         axios.post(url,this.News).then(res=>{
           if (res.data!='0') {
-            this.$router.push({path:"/NewsList"})
+            this.$router.push({path:"/CRUD/NewsList"})
           }else {
             alert("添加失败！")
           }

@@ -41,7 +41,7 @@
         var url='/api/adminLogin'
         axios.post(url,this.admin).then(res=>{
           if(res.data=='ok'){
-            this.$router.push('/CRUD');
+            this.$router.push('/CRUD/doctorListPage');
           }else {
             alert(res.data)
           }

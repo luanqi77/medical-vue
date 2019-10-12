@@ -10,7 +10,7 @@
       </el-form-item>
       <br>
       <el-form-item label="时间" prop="g_time">
-        <el-input v-model="Guahao.g_time"></el-input>
+        <el-input v-model="Guahao.g_time" type="date"></el-input>
       </el-form-item>
       <br>
       <el-form-item label="科室" prop="syn">
@@ -62,7 +62,7 @@
         var url = "api/insertGuahao"
         axios.post(url,this.Guahao).then(res=>{
           if (res.data!='') {
-            this.$router.push({path:"/GuahaoList"})
+            this.$router.push({path:"/CRUD/GuahaoList"})
           }else if(res.data=='') {
             alert("添加失败！")
           }

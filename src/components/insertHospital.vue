@@ -72,7 +72,7 @@
         var url = "api/insertHospital"
         axios.post(url,this.Hospital).then(res=>{
           if (res.data!='') {
-            this.$router.push({path:"/HospitalList"})
+            this.$router.push({path:"/CRUD/HospitalList"})
           }else if(res.data=='') {
             alert("添加失败！")
           }

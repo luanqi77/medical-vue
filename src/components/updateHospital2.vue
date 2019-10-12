@@ -84,7 +84,7 @@
         axios.post(url, this.Hospital).then(res => {
           if (res.data != null) {
             alert("修改成功！")
-            this.$router.push('/HospitalList')
+            this.$router.push('/CRUD/HospitalList')
           } else {
             alert("修改失败")
           }
