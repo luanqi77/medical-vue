@@ -70,7 +70,7 @@
 
             <div style="width: 200px;height: 190px">
               <form model="user">
-                <el-image :src="user.pic" style="margin: auto;width: 180px;height: 180px"></el-image>
+                <el-image :src="user.pic" style="margin: auto;width: 180px;height: 180px;margin-top: 5px"></el-image>
               </form>
             </div>
               <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:200px;

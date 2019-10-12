@@ -8,8 +8,8 @@
           <span>个人中心 ></span><span>我的消息</span>
         </div>
         <div style="margin: auto;width: 80%">
-        <div style="float: left;width:715px;margin-left: 165px;">
-          <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;
+        <div style="float: left;width:800px;margin-left: 165px;">
+          <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:800px;
         height: 50px;margin-top: 10px" >
             <div style="float: left; margin-left: 35px">
               <el-link  @click="userMain()" style="line-height: 50px;margin-left: 20px;font-size: 18px;color: darkturquoise">我的提问</el-link>
@@ -17,9 +17,10 @@
               <el-link  @click="userAppoint()" style="line-height: 50px;margin-left: 40px;font-size: 18px;color: darkturquoise">挂号预约</el-link>
             </div>
           </div>
-          <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:715px;height: 525px;margin-top: 2px" >
+          <div style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12);width:800px;height: 525px;margin-top: 2px" >
             <div style="height: 300px;margin-left: 60px; padding-top: 30px;">
               <el-steps direction="vertical" :active="1" >
+
                 <el-step title="2019-10-12" description="已提问" ></el-step>
                 <el-step title="2019-10-12" description="已有医生查看你的问题"></el-step>
                 <el-step title="2019-10-12" description="已有医生开始为您服务，2小时内可和医生沟通3轮"></el-step>
@@ -34,7 +35,7 @@
 
           <div style="width: 200px;height: 190px">
             <form model="user">
-              <el-image :src="user.pic" style="margin: auto;width: 180px;height: 180px"></el-image>
+              <el-image :src="user.pic" style="margin: auto;width: 180px;height: 180px;margin-top: 5px"></el-image>
             </form>
                <!--<el-upload-->
               <!--class="avatar-uploader"-->
@@ -120,7 +121,9 @@
       ElLink},
     data(){
           return{
-              questions:[],
+              questions:{
+                  createTime:''
+              },
               imageUrl: '',
             user:{
               username:'',
@@ -139,6 +142,7 @@
         axios.post(url,{username:username}).then(res=>{
           this.user=res.data;
         });
+
       },
     methods: {
       handleAvatarSuccess(res, file) {
