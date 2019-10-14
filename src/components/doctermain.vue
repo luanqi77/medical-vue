@@ -38,7 +38,7 @@
               </el-table-column>
               <el-table-column
                 prop="state"
-                label="问题描述"
+                label="状态"
                 width="150"
               >
               </el-table-column>

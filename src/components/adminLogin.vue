@@ -57,3 +57,14 @@
   }
 
 </script>
+<!--<style>-->
+  <!--.el-form{-->
+    <!--width: 500px;-->
+    <!--height:300px;-->
+    <!--background: red;-->
+    <!--margin: 0 auto;-->
+    <!--padding-top: 50px;-->
+    <!--background-image: url("../assets/image/adminLoginPage.jpg");-->
+    <!--background-size: 100% 100%;-->
+  <!--}-->
+<!--</style>-->
