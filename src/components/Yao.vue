@@ -21,7 +21,7 @@
       prop="pic"
       label="图片">
       <template slot-scope="Yaos">
-        <el-image :src="Yaos.row.pic" style="width: 50px;height: 50px;"></el-image>
+        <el-image :src="Yaos.row.pic" style="width: 200px;height:200px;"></el-image>
       </template>
     </el-table-column>
     <el-table-column
